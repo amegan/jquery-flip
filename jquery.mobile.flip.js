@@ -33,7 +33,7 @@
                               // transition supported browser)
     forwardDir: DIR_RTOL,     // "ltor" | "rtol" | "ttob" | "btot"
     height: '',               // height string "" means auto
-    keyboardNavigation: true, // flag to do support keyboard naviation
+    keyboardNav: true,        // flag to do support keyboard naviation
     showPager: false,         // flag to show pager
     loop: false               // flag for loop conte
   };
@@ -48,6 +48,7 @@
     {key: 'effect', attr: 'effect', type: TYPE_TEXT},
     {key: 'forwardDir', attr: 'forward-dir', type: TYPE_TEXT},
     {key: 'height', attr: 'height', type: TYPE_TEXT},
+    {key: 'keyboardNav', attr: 'keyboard-nav', type: TYPE_BOOL},
     {key: 'showPager', attr: 'show-pager', type: TYPE_BOOL},
     {key: 'loop', attr: 'loop', type: TYPE_BOOL}
   ];
@@ -1148,7 +1149,6 @@
     this.effect.action(targetRatio);
 
     event.preventDefault();
-    event.stopImmediatePropagation();
 
     return true;
   }
@@ -1253,6 +1253,17 @@
     var _this = this;
 
     // --------------------------------------------------
+    // Special hook for img elem (to prevent img drag and drop)
+    var _this = this;
+    $elem.find('img').each(function(idx, anchor) {
+      $(anchor).bind(mousedown, function(event) {
+        event.preventDefault();
+      });
+     });
+
+
+
+    // --------------------------------------------------
     // init pager
     if (this.options.showPager) {
       this.initPager();
@@ -1297,7 +1308,7 @@
 
     // -------------------------------------------------
     // add keyboard hook
-    if (this.options.keyboardNavigation) {
+    if (this.options.keyboardNav) {
       var _this = this;
       $(document)
       .unbind('keydown.flip')
@@ -1331,7 +1342,7 @@
   $.fn[pluginName] = function(options) {
     if (this.length > 1) {
       // force to disable keyboard support
-      options.keyboardNavigation = false;
+      options.keyboardNav = false;
     }
 
     return this.each(function() {
