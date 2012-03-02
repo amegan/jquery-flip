@@ -3,6 +3,10 @@
   position: relative;
   -webkit-perspective: 3000px;
   -moz-perspective: 3000px;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 
 .flipContent {
