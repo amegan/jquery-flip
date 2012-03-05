@@ -56,7 +56,7 @@
   var _FIRST_HALF = 1;
   var _SECOND_HALF = -1;
 
-  var CSSPREFIX = 'webkit';
+  var CSSPREFIX = '';
   var KEY_LEFT = 37;
   var KEY_RIGHT = 39;
 
@@ -149,6 +149,20 @@
     // clone object
     $firstHalf.append($elem.clone());
     $secondHalf.append($elem.clone());
+
+    // cancel anchor click in the flipping element
+    // should be find because flip effect is working here
+    $firstHalf.find('a').each(function(idx, anchor) {
+        $(anchor).bind("click", function(event) {
+          return false;
+        });
+    });
+
+    $secondHalf.find('a').each(function(idx, anchor) {
+        $(anchor).bind("click", function(event) {
+          return false;
+        });
+    });
 
     // adjust widht/height
     var elemWidth = $elem.width();
@@ -1203,11 +1217,27 @@
     }
   }
 
+
+  Plugin.prototype._isAccessFromMobileBrowser = function() {
+    if( navigator.userAgent.match(/Android/i) ||
+     navigator.userAgent.match(/webOS/i) ||
+     navigator.userAgent.match(/iPhone/i) ||
+     navigator.userAgent.match(/iPod/i) ||
+     navigator.userAgent.match(/BlackBerry/)
+     ){
+       return true;
+    }
+
+    return false;
+  }
+
   Plugin.prototype.init = function() {
     //
     // detect browser to switch css prefix
     ua = $.browser;
-    if (ua.mozilla && parseInt(ua.version.slice(0, 2)) > 10) {
+    if (ua.webkit) {
+      CSSPREFIX = 'webkit';
+    } else if (ua.mozilla && parseInt(ua.version.slice(0, 2)) > 10) {
       CSSPREFIX = 'Moz';
     }
 
@@ -1253,14 +1283,16 @@
     var _this = this;
 
     // --------------------------------------------------
-    // Special hook for img elem (to prevent img drag and drop)
-    var _this = this;
-    $elem.find('img').each(function(idx, anchor) {
-      $(anchor).bind(mousedown, function(event) {
-        event.preventDefault();
-      });
-     });
-
+    // Special hook for img elem
+    // (to prevent native img drag and drop on desktop browsers)
+    if (!this._isAccessFromMobileBrowser()) {
+      var _this = this;
+      $elem.find('img').each(function(idx, anchor) {
+        $(anchor).bind(mousedown, function(event) {
+          event.preventDefault();
+        });
+       });
+    }
 
 
     // --------------------------------------------------
@@ -1282,17 +1314,6 @@
       });
 
     }
-
-    // FIXME: link does not work on mobile safari
-    var _this = this;
-    $elem.find('a').each(function(idx, anchor) {
-      $(anchor).bind(mousedown, function(event) {
-        //event.preventDefault();
-      });
-
-      $(anchor).bind(click, function(event) {
-      });
-    });
 
     $(this.element).bind(mousedown, function(event) {
       return _this.vmousedown(event);

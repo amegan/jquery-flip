@@ -3,6 +3,7 @@
   position: relative;
   -webkit-perspective: 3000px;
   -moz-perspective: 3000px;
+  perspective: 3000px;
 
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -39,16 +40,21 @@
   -moz-backface-visibility: hidden;
   -moz-transform-style: preserve3d;
   -moz-transform: rotateY(0deg);
+  backface-visibility: hidden;
+  transform-style: preserve3d;
+  transform: rotateY(0deg);
 }
 
 .flipping.firstHalf {
   -webkit-transform-origin: 100% 0;
   -moz-transform-origin: 100% 0;
+  transform-origin: 100% 0;
 }
 
 .flipping.secondHalf {
   -webkit-transform-origin: 0 0;
   -moz-transform-origin: 0 0;
+  transform-origin: 0 0;
 }
 
 .backflipping {
@@ -60,26 +66,33 @@
   -moz-backface-visibility: hidden;
   -moz-transform-style:flat;
   -moz-transform: rotateY(180deg);
+  backface-visibility: hidden;
+  transform-style:flat;
+  transform: rotateY(180deg);
 }
 
 .holizontalFlipping.firstHalf {
   -webkit-transform-origin: 100% 0;
   -moz-transform-origin: 100% 0;
+  transform-origin: 100% 0;
 }
 
 .holizontalFlipping.secondHalf {
   -webkit-transform-origin: 0 0;
   -moz-transform-origin: 0 0;
+  transform-origin: 0 0;
 }
 
 .verticalFlipping.firstHalf {
   -webkit-transform-origin: 0 100%;
   -moz-transform-origin: 0 100%;
+  transform-origin: 0 100%;
 }
 
 .verticalFlipping.secondHalf {
   -webkit-transform-origin: 0 0;
   -moz-transform-origin: 0 0;
+  transform-origin: 0 0;
 }
 
 .splitHalf {
