@@ -1175,7 +1175,7 @@
     // shrink height for pager area
     var height = $elem.height();
     var heightCSS = (height - PAGER_HEIGHT) + 'px';
-    $elem.children('div,p,section').each(function(idx, child) {
+    $elem.children('div,p,section,article').each(function(idx, child) {
       $(child).css('height', heightCSS);
     });
 

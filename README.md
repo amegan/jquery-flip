@@ -1,6 +1,9 @@
 # jQuery Flip Plugin
 
-jQuery/jQuery mobile plugin to give Flipboard app like effect. Flip effect uses css 3d transform. Flip effect currently works on WebKit browsers (e.g. Chrome, Safari, including iOS mobile safari) or Firefox 11. Other browsers will be fallback to "slide" effect.
+jQuery/jQuery mobile plugin to give Flipboard app like effect. Flip effect uses css 3d transform. Flip effect currently works on WebKit browsers (e.g. Chrome, Safari, including iOS mobile safari) or Firefox 11. It still works with other browsers but the "slide" effect will be selected forecely.
+
+## Compatibility
+Current version is compatible with jQuery 1.6.4, 1.7.0, 1.7.1 and jQuery Mobile 1.0 and 1.1.
 
 
 ## Installation
@@ -16,7 +19,7 @@ After copying files to your web project, load js and css file into your html.
 ## Usage
 
 ### Prerequisite
-This plugin expects nested div or p or section element structure. Page root div, p, section element must be used to initialize plugin.
+This plugin expects nested `<div>`, `<p>`, `<section>` or `<article>` elements structure. Root element will be used to initialize plugin.
 
     <div id="flipRoot">
        <!-- div element -->
@@ -27,9 +30,13 @@ This plugin expects nested div or p or section element structure. Page root div,
        <p> 
          Flip Content 2
        </p>
+       <!-- or p element -->
+       <artcile>
+         Flip Content 3
+       </article>
        <!-- or section element -->       
        <section>
-         <h3>Flip Content 3</h3>
+         <h3>Flip Content 4</h3>
          <p>You can put any elements under here</p>
        </section>
     </div>
@@ -41,7 +48,7 @@ jQuery user can enable plugin by calling jQuery.flip() method.
       $("#flipRoot").flip();
     });
 
-option object can be passed to the flip() method like below. Available options are described later.
+option object can be passed to the flip() method. Available options are described later.
 
     $(document).ready(function() {
       $("#flipRoot").flip({
