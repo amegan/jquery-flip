@@ -5,6 +5,8 @@ jQuery/jQuery mobile plugin to give Flipboard app like effect. Flip effect uses 
 ## Compatibility
 Current version is compatible with jQuery 1.6.4, 1.7.0, 1.7.1 and jQuery Mobile 1.0 and 1.1.
 
+## Screenshots
+![Flip right-to-left](http://amegan.github.com/jquery-flip/shot.png "Flip Right-to-Left")  ![Flip bottom-to-top](http://amegan.github.com/jquery-flip/shot2.png "Flip Bottom-to-Top")
 
 ## Installation
 
@@ -15,6 +17,13 @@ After copying files to your web project, load js and css file into your html.
     <!-- "images" directory must be copied under css folder -->
     <link rel="stylesheet" href="css/jquery.mobile.flip.css" />
     <script type="text/javascript" src="js/jquery.mobile.flip.js"></script>
+
+## github page
+[http://amegan.github.com/jquery-flip/](http://amegan.github.com/jquery-flip/ "jquery-flip on github page")
+
+## Demo
+Linke to demo page
+
 
 ## Usage
 
@@ -87,7 +96,7 @@ Option can be passed through data-flip- prefix attribute too.
        </section>
     </div>
 
-## Option
+## Options
 Following option is supported.
 
  option name | description | jqm attribute | value
