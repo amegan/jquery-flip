@@ -60,6 +60,9 @@
   var KEY_LEFT = 37;
   var KEY_RIGHT = 39;
 
+  var CURRENT = 'flipCurrent';
+  var CLASS_CURRENT = '.'+CURRENT;
+
   function Flip(element, options) {
     this.START_OFFSET = 8;
     this.MAX_DISTANCE = 250;
@@ -76,7 +79,7 @@
 
   Flip.prototype._initShadow = function() {
     var $elem = $(this.element);
-    var $cur = $elem.children('.current');
+    var $cur = $elem.children(CLASS_CURRENT);
     var elemWidth = $cur.width();
     var elemHeight = $cur.height();
 
@@ -233,7 +236,7 @@
     var $elem = $(this.element);
 
     // find currently shown element
-    var $cur = $elem.children('.current');
+    var $cur = $elem.children(CLASS_CURRENT);
     var $underContent = null;
     var $flippingElem = null, $flippingBackElem = null;
 
@@ -286,8 +289,8 @@
     $flippingBackElem.addClass('backflipping');
 
     // flip start
-    $cur = $elem.children('.current');
-    $cur.removeClass('current');
+    $cur = $elem.children(CLASS_CURRENT);
+    $cur.removeClass(CURRENT);
     $cur.addClass('working');
 
     $flipShadow.show();
@@ -493,7 +496,7 @@
 
     // to avoid flushing screen, add .current class first
     // then remove .working class
-    $nextCurrent.addClass('current');
+    $nextCurrent.addClass(CURRENT);
     $current.removeClass('working');
 
     //
@@ -597,7 +600,7 @@
 
     var $elem = $(this.element);
 
-    var $cur = $elem.children('.current');
+    var $cur = $elem.children(CLASS_CURRENT);
     var $nextContent = null;
     var $flippingElem, $flippingBackElem;
     var isNext = false;
@@ -677,8 +680,8 @@
 
 
     // slide start
-    $cur = $elem.children('.current');
-    $cur.removeClass('current');
+    $cur = $elem.children(CLASS_CURRENT);
+    $cur.removeClass(CURRENT);
     $cur.addClass('working');
 
     $slidingBg.show();
@@ -789,7 +792,7 @@
 
     // to avoid flushing screen, add .current class first
     // then remove .working class
-    $nextCurrent.addClass('current');
+    $nextCurrent.addClass(CURRENT);
     $current.removeClass('working');
 
     //
@@ -1047,7 +1050,7 @@
     if (this._clickContext.flipside != null) return;
 
     var $elem = $(this.element);
-    var $current = $elem.children('.current');
+    var $current = $elem.children(CLASS_CURRENT);
 
     var $prevCurrent = this.effect.getPrevContent($current);
     var forwardDir = this.options.forwardDir;
@@ -1070,7 +1073,7 @@
     if (this._clickContext.flipside != null) return;
 
     var $elem = $(this.element);
-    var $current = $elem.children('.current');
+    var $current = $elem.children(CLASS_CURRENT);
 
     var $nextCurrent = this.effect.getNextContent($current);
     var forwardDir = this.options.forwardDir;
@@ -1094,7 +1097,7 @@
     return function() {
       if (_this.options.showPager) {
         // update pager positio
-        var idx = $(_this.element).children('.current').index();
+        var idx = $(_this.element).children(CLASS_CURRENT).index();
         _this.setPagerPos(idx);
       }
 
@@ -1190,15 +1193,15 @@
     }
 
     // set current
-    var idx = $elem.children('.current').index();
+    var idx = $elem.children(CLASS_CURRENT).index();
     $currentA = $pager.children('.dot');
-    $currentA.eq(idx).addClass('current');
+    $currentA.eq(idx).addClass("current");
   }
 
   Plugin.prototype.setPagerPos = function(pageIdx) {
     var $elem = $(this.element);
-    $elem.find('.pager span.dot.current').removeClass('current');
-    $elem.find('.pager span.dot').eq(pageIdx).addClass('current');
+    $elem.find('.pager span.dot.current').removeClass("current");
+    $elem.find('.pager span.dot').eq(pageIdx).addClass("current");
   }
 
   Plugin.prototype.pagerTap = function(event) {
@@ -1263,9 +1266,9 @@
       $(child).addClass('flipContent').css('height', heightCSS);
     });
 
-    var $cur = $elem.children('.current');
+    var $cur = $elem.children(CLASS_CURRENT);
     if ($cur.length == 0) {
-      $elem.children().eq(0).addClass('current');
+      $elem.children().eq(0).addClass(CURRENT);
     }
 
     // --------------------------------------------------

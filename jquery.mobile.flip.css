@@ -20,7 +20,7 @@
   overflow: hidden;
 }
 
-.flipContent.current {
+.flipContent.flipCurrent {
   display: block;
 }
 
