@@ -10,7 +10,7 @@ Current version is compatible with jQuery 1.6.4, 1.7.0, 1.7.1 and jQuery Mobile 
 
 ## Installation
 
-Copy jquery.mobile.flip.js, jquery.mobile.flip.css and images directory to your web page project. Note that css file and images folder must be in the same directory. 
+Copy jquery.mobile.flip.js, jquery.mobile.flip.css and images directory to your web page project. Note that css file and images folder must be in the same directory.
 
 After copying files to your web project, load js and css file into your html.
 
@@ -22,7 +22,7 @@ After copying files to your web project, load js and css file into your html.
 [http://amegan.github.com/jquery-flip/](http://amegan.github.com/jquery-flip/ "jquery-flip on github page")
 
 ## Demo
-Linke to demo page
+[http://amegan.github.com/jquery-flip/demo/instagram.html](http://amegan.github.com/jquery-flip/demo/instagram.html "Instagram demo")
 
 
 ## Usage
@@ -34,16 +34,16 @@ This plugin expects nested `<div>`, `<p>`, `<section>` or `<article>` elements s
        <!-- div element -->
        <div>
          Flip Content 1
-       </div> 
+       </div>
        <!-- or p element -->
-       <p> 
+       <p>
          Flip Content 2
        </p>
        <!-- or p element -->
        <artcile>
          Flip Content 3
        </article>
-       <!-- or section element -->       
+       <!-- or section element -->
        <section>
          <h3>Flip Content 4</h3>
          <p>You can put any elements under here</p>
@@ -68,13 +68,13 @@ option object can be passed to the flip() method. Available options are describe
     });
 
 ### jQuery Mobile User
-Plugin will be initialized with the element which has data-role="flip" attribute without calling initialization method. 
+Plugin will be initialized with the element which has data-role="flip" attribute without calling initialization method.
 
     <div id="flipRoot" data-role="flip">
        <div>
          Flip Content 1
-       </div> 
-       <p> 
+       </div>
+       <p>
          Flip Content 2
        </p>
        <section>
@@ -87,8 +87,8 @@ Option can be passed through data-flip- prefix attribute too.
     <div id="flipRoot" data-role="flip"  data-flip-show-pager="true" data-flip-forward-dir="ltor">
        <div>
          Flip Content 1
-       </div> 
-       <p> 
+       </div>
+       <p>
          Flip Content 2
        </p>
        <section>
@@ -117,19 +117,19 @@ Sample:
         showpager: true,
         loop: true}));
     });
-    
+
     <div id="flipRoot" data-role="flip"  data-flip-show-pager="true" data-flip-forward-dir="ltor">
        <div>
          Flip Content 1
-       </div> 
-       <p> 
+       </div>
+       <p>
          Flip Content 2
        </p>
        <section>
          Flip Content 3
        </section>
     </div>
-    
+
 
 ## License
 
