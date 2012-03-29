@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title></title>
-  <link rel="stylesheet" href="../jquery.mobile.flip.min.css" />
+  <title>jquery-flip demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.css" />
+   <link rel="stylesheet" href="../jquery.mobile.flip.min.css" />
 
   <style>
     .imgFrame {
@@ -26,6 +28,7 @@
   </style>
 
   <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.js"></script>
   <script type="text/javascript" src="../jquery.mobile.flip.min.js"></script>
 
   <script>
@@ -166,7 +169,9 @@
   </script>
 </head>
 <body>
-  <div id="flipRoot">
+  <div data-role="page">
+    <div id="flipRoot">
+    </div>
   </div>
 </body>
 </html>
