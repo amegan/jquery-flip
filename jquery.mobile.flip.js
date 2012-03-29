@@ -868,6 +868,8 @@
   }
 
   Plugin.prototype.jqmInit = function() {
+    if ($.mobile == null) return;
+
     // check element data- attribute for jqm initialization
     var $elem = $(this.element);
 
