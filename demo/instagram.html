@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="../jquery.mobile.flip.min.css" />
+
+  <style>
+    .imgFrame {
+      background-size: 100%;
+      width: 100%;
+      height: 100%;
+      float: left;
+      background-position: 0 20%;
+      background-repeat: no-repeat;
+    }
+
+    .imgFrameHalf {
+      background-size: 100%;
+      width: 50%;
+      height: 100%;
+      float: left;
+      background-repeat: no-repeat;
+    }
+
+  </style>
+
+  <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="../jquery.mobile.flip.min.js"></script>
+
+  <script>
+    // load popular photos
+    var CLIENT_ID = 'e9f9cc183b7742f6b731fd8c585a7e3b';
+    var BASE_URL = 'https://api.instagram.com/v1/media/popular?'
+    BASE_URL += 'client_id='+CLIENT_ID
+    BASE_URL += '&callback=init';
+
+    function layout1($parent, index, imgArray) {
+      var url = 'url(\''+imgArray[index].images.standard_resolution.url+'\')';
+      $parent.append($('<div class="imgFrame"></div>')
+      .css("backgroundImage", url)
+      );
+
+      return index+1;
+    }
+
+    function layout2($parent, index, imgArray) {
+       var nextIndex = index;
+
+       $parent.append($('<img src="'+
+       imgArray[nextIndex].images.standard_resolution.url+'"/>').css("float", "left"));
+
+       if (imgArray[index+1]) {
+         nextIndex = index+1;
+         $parent.append($('<img src="'+
+            imgArray[nextIndex].images.low_resolution.url+'"/>'));
+       }
+
+       if (imgArray[index+2]) {
+         nextIndex = index+2;
+         $parent.append($('<img src="'+
+         imgArray[nextIndex].images.low_resolution.url+'"/>'));
+       }
+
+       return nextIndex+1;
+    }
+
+    function layout3($parent, index, imgArray) {
+       var nextIndex = index;
+
+       $parent.append($('<img src="'+
+       imgArray[nextIndex].images.standard_resolution.url+'"/>').css("float", "right"));
+
+       if (imgArray[index+1]) {
+         nextIndex = index+1;
+         $parent.append($('<img src="'+
+            imgArray[nextIndex].images.low_resolution.url+'"/>'));
+       }
+
+       if (imgArray[index+2]) {
+         nextIndex = index+2;
+         $parent.append($('<img src="'+
+         imgArray[nextIndex].images.low_resolution.url+'"/>'));
+       }
+
+       return nextIndex+1;
+    }
+
+    function layout4($parent, index, imgArray) {
+      var nextIndex = index;
+      var url = 'url(\''+imgArray[nextIndex].images.standard_resolution.url+'\')';
+
+      $parent.append($('<div class="imgFrameHalf"></div>')
+      .css("backgroundImage", url)
+      );
+
+       if (imgArray[index+1]) {
+         nextIndex = index+1;
+         var url = 'url(\''+imgArray[nextIndex].images.standard_resolution.url+'\')';
+
+         $parent.append($('<div class="imgFrameHalf"></div>')
+          .css("backgroundImage", url)
+         );
+       }
+
+      return nextIndex+1;
+    }
+    var logic = [layout1, layout2, layout3, layout4];
+
+    function init(responseJSON) {
+      // put instagram photos inside
+
+      var $flipRoot = $("#flipRoot");
+
+      // create introduction page
+      var imgurl = 'url(\''+responseJSON.data[0].images.standard_resolution.url+'\')';
+
+      var $page = $('<div class="imgFrame"></div>')
+      .css("backgroundImage", imgurl);
+
+      $page.append($('<div>jQuery Flip Plugin Demo Using Instagram API</div>')
+      .css("font-size","40px")
+      .css("margin","20px 10px")
+      .css("padding", "10px")
+      .css("color", "white")
+      .css("background-color", "#555555")
+      );
+
+      $page.append($('<div>&lt; Flip</div>')
+      .css("float", "right")
+      .css("font-size","20px")
+      .css("margin","300px 0px")
+      .css("padding", "10px")
+      .css("color", "white")
+      .css("background-color", "#555555")
+      .css("text-align", "right")
+      );
+
+      $flipRoot.append($page);
+      $page = $('<div></div>').css("backgroundColor", "white");
+
+      var i=1, len=responseJSON.data.length;
+      while (i<len) {
+
+        // pick layout logic
+        var layout = logic[(Math.floor(Math.random()*100) % logic.length)];
+        i = layout($page, i, responseJSON.data);
+
+        $flipRoot.append($page);
+        $page = $('<div></div>').css("backgroundColor", "white");
+      }
+
+      // init flip
+      $flipRoot.flip({
+        height: '600px',
+        showPager: true
+      });
+    }
+
+    // append script element
+    $(document).ready(function(e) {
+      var $script = $('<script src="'+BASE_URL+'"></script');
+      $(document.body).append($script);
+    });
+
+  </script>
+</head>
+<body>
+  <div id="flipRoot">
+  </div>
+</body>
+</html>
