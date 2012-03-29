@@ -114,6 +114,7 @@
       // put instagram photos inside
 
       var $flipRoot = $("#flipRoot");
+      if ($flipRoot.children(".flipContent").length > 0) return;
 
       // create introduction page
       var imgurl = 'url(\''+responseJSON.data[0].images.standard_resolution.url+'\')';
