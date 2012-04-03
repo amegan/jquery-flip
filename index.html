@@ -1,0 +1,242 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>Jquery-flip</title>
+  <meta name="description" content="Flipboard like effect for jquery and jquery mobile">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">Jquery-flip</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">Flipboard like effect for jquery and jquery mobile</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/amegan/jquery-flip/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/amegan/jquery-flip/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/amegan/jquery-flip" class="code">fork Jquery-flip on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>jQuery Flip Plugin</h1>
+
+<p>jQuery/jQuery mobile plugin to give Flipboard app like effect. Flip effect uses css 3d transform. Flip effect currently works on WebKit browsers (e.g. Chrome, Safari, including iOS mobile safari) or Firefox 11. It still works with other browsers but the "slide" effect will be selected forecely.</p>
+
+<h2>Compatibility</h2>
+
+<p>Current version is compatible with jQuery 1.6.4, 1.7.0, 1.7.1 and jQuery Mobile 1.0 and 1.1.</p>
+
+<h2>Screenshots</h2>
+
+<p><img src="http://amegan.github.com/jquery-flip/shot.png" alt="Flip right-to-left" title="Flip Right-to-Left"><img src="http://amegan.github.com/jquery-flip/shot2.png" alt="Flip bottom-to-top" title="Flip Bottom-to-Top"></p>
+
+<h2>Installation</h2>
+
+<p>Copy jquery.mobile.flip.js, jquery.mobile.flip.css and images directory to your web page project. Note that css file and images folder must be in the same directory.</p>
+
+<p>After copying files to your web project, load js and css file into your html.</p>
+
+<pre><code>&lt;!-- "images" directory must be copied under css folder --&gt;
+&lt;link rel="stylesheet" href="css/jquery.mobile.flip.css" /&gt;
+&lt;script type="text/javascript" src="js/jquery.mobile.flip.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<h2>github page</h2>
+
+<p><a href="http://amegan.github.com/jquery-flip/" title="jquery-flip on github page">http://amegan.github.com/jquery-flip/</a></p>
+
+<h2>Demo</h2>
+
+<p><a href="http://amegan.github.com/jquery-flip/demo/instagram.html" title="Instagram demo">http://amegan.github.com/jquery-flip/demo/instagram.html</a></p>
+
+<h2>Usage</h2>
+
+<h3>Prerequisite</h3>
+
+<p>This plugin expects nested <code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;section&gt;</code> or <code>&lt;article&gt;</code> elements structure. Root element will be used to initialize plugin.</p>
+
+<pre><code>&lt;div id="flipRoot"&gt;
+   &lt;!-- div element --&gt;
+   &lt;div&gt;
+     Flip Content 1
+   &lt;/div&gt;
+   &lt;!-- or p element --&gt;
+   &lt;p&gt;
+     Flip Content 2
+   &lt;/p&gt;
+   &lt;!-- or p element --&gt;
+   &lt;artcile&gt;
+     Flip Content 3
+   &lt;/article&gt;
+   &lt;!-- or section element --&gt;
+   &lt;section&gt;
+     &lt;h3&gt;Flip Content 4&lt;/h3&gt;
+     &lt;p&gt;You can put any elements under here&lt;/p&gt;
+   &lt;/section&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h3>jQuery User</h3>
+
+<p>jQuery user can enable plugin by calling jQuery.flip() method.</p>
+
+<pre><code>$(document).ready(function() {
+  $("#flipRoot").flip();
+});
+</code></pre>
+
+<p>option object can be passed to the flip() method. Available options are described later.</p>
+
+<pre><code>$(document).ready(function() {
+  $("#flipRoot").flip({
+    forwardDir: "ltor",
+    height: "340px",
+    showpager: true,
+    loop: true}));
+});
+</code></pre>
+
+<h3>jQuery Mobile User</h3>
+
+<p>Plugin will be initialized with the element which has data-role="flip" attribute without calling initialization method.</p>
+
+<pre><code>&lt;div id="flipRoot" data-role="flip"&gt;
+   &lt;div&gt;
+     Flip Content 1
+   &lt;/div&gt;
+   &lt;p&gt;
+     Flip Content 2
+   &lt;/p&gt;
+   &lt;section&gt;
+     Flip Content 3
+   &lt;/section&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>Option can be passed through data-flip- prefix attribute too.</p>
+
+<pre><code>&lt;div id="flipRoot" data-role="flip"  data-flip-show-pager="true" data-flip-forward-dir="ltor"&gt;
+   &lt;div&gt;
+     Flip Content 1
+   &lt;/div&gt;
+   &lt;p&gt;
+     Flip Content 2
+   &lt;/p&gt;
+   &lt;section&gt;
+     Flip Content 3
+   &lt;/section&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h2>Options</h2>
+
+<p>Following option is supported.</p>
+
+<table>
+<tr>
+<td>option name</td>
+<td>description</td>
+<td>jqm attribute</td>
+<td>value</td>
+</tr>
+<tr>
+<td>effect</td>
+<td>Transiton effect</td>
+<td>data-flip-effect</td>
+<td>'flip' or 'slide'</td>
+</tr>
+<tr>
+<td>forwardDir</td>
+<td>forward direction</td>
+<td>data-flip-forward-dir</td>
+<td>'rtol' or 'ltor' or 'ttob' or 'btot'</td>
+</tr>
+<tr>
+<td>height</td>
+<td>Content height</td>
+<td>data-flip-height</td>
+<td>height css</td>
+</tr>
+<tr>
+<td>keyboardNav</td>
+<td>enable keyboard navigation</td>
+<td>data-flip-keyboard-nav</td>
+<td>true or false</td>
+</tr>
+<tr>
+<td>showPager</td>
+<td>show pager</td>
+<td>data-flip-show-pager</td>
+<td>true or false</td>
+</tr>
+<tr>
+<td>loop</td>
+<td>loop contents</td>
+<td>data-flip-loop</td>
+<td>true or false</td>
+</tr>
+</table><p>Sample:</p>
+
+<pre><code>$(document).ready(function() {
+  $("#flipRoot").flip({
+    forwardDir: 'ltor',
+    height: '340px',
+    showpager: true,
+    loop: true}));
+});
+
+&lt;div id="flipRoot" data-role="flip"  data-flip-show-pager="true" data-flip-forward-dir="ltor"&gt;
+   &lt;div&gt;
+     Flip Content 1
+   &lt;/div&gt;
+   &lt;p&gt;
+     Flip Content 2
+   &lt;/p&gt;
+   &lt;section&gt;
+     Flip Content 3
+   &lt;/section&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h2>License</h2>
+
+<p><a href="http://www.opensource.org/licenses/mit-license.php" title="link to Open Source Initiative">The MIT License</a></p>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/amegan" class="avatar"><img src="https://secure.gravatar.com/avatar/d1cb24c486c9c5b08127f4273f04d817?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png" width="48" height="48"/></a> <a href="https://github.com/amegan">amegan</a> maintains <a href="https://github.com/amegan/jquery-flip">Jquery-flip</a></p>
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="http://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/amegan/jquery-flip/tarball/master" class="tar">tar</a><a href="https://github.com/amegan/jquery-flip/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+  
+</body>
+</html>
