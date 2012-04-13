@@ -4,10 +4,28 @@
   <meta charset="UTF-8">
   <title>jquery-flip demo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.css" />
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.css" />
    <link rel="stylesheet" href="../jquery.mobile.flip.min.css" />
 
-  <style>
+   <style>
+     #demotitle {
+      font-size: 40px;
+      margin: 20px 10px;
+      padding: 10px;
+      color: white;
+      background-color: #555555;
+     }
+
+     #flipmsg {
+      float: right;
+      font-size: 20px;
+      margin: 300px 0px;
+      padding: 10px;
+      color: white;
+      background-color: #555555;
+      text-align: right;
+     }
+
     .imgFrame {
       background-size: 100%;
       width: 100%;
@@ -15,6 +33,7 @@
       float: left;
       background-position: 0 20%;
       background-repeat: no-repeat;
+      background-color: #ffffff;
     }
 
     .imgFrameHalf {
@@ -25,10 +44,82 @@
       background-repeat: no-repeat;
     }
 
+    .imgFirstHalf {
+      width: 50%;
+      height: 100%;
+      float: left;
+      background-repeat: no-repeat;
+    }
+
+    .imgLastQuarter {
+      width: 50%;
+      height: 50%;
+      float: right;
+      background-position: 50% 0;
+      background-repeat: no-repeat;
+    }
+
+    .imgLastHalf {
+      width: 50%;
+      height: 100%;
+      float: right;
+      background-repeat: no-repeat;
+    }
+
+    .imgFirstQuarter {
+      width: 50%;
+      height: 50%;
+      float: left;
+      background-position: 50% 0;
+      background-repeat: no-repeat;
+    }
+
+  @media only screen and (max-width: 420px) {
+    #demotitle {
+      font-size: 16px;
+      margin: 10px 10px;
+    }
+
+    #flipmsg {
+      font-size: 16px;
+      margin: 200px 0px;
+    }
+
+    .imgFrame {
+      background-position: 0 50%;
+    }
+
+    .imgFrameHalf {
+      width: 100%;
+      height: 50%;
+    }
+
+    .imgFirstHalf {
+      background-position: 0 50%;
+      width: 100%;
+      height: 50%;
+      background-repeat: no-repeat;
+    }
+
+    .imgLastHalf {
+      background-position: 0 50%;
+      width: 100%;
+      height: 50%;
+      background-repeat: no-repeat;
+    }
+
+    .imgFirstQuarter {
+      width: 50%;
+      height: 50%;
+      float: right;
+      background-repeat: no-repeat;
+    }
+  }
+
   </style>
 
   <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-  <script src="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.js"></script>
   <script type="text/javascript" src="../jquery.mobile.flip.min.js"></script>
 
   <script>
@@ -50,40 +141,51 @@
     function layout2($parent, index, imgArray) {
        var nextIndex = index;
 
-       $parent.append($('<img src="'+
-       imgArray[nextIndex].images.standard_resolution.url+'"/>').css("float", "left"));
+       var imgurl = 'url(\''+imgArray[nextIndex].images.standard_resolution.url+'\')';
+
+       $parent.append($('<div class="imgFirstHalf"></div>')
+       .css("backgroundImage", imgurl));
 
        if (imgArray[index+1]) {
          nextIndex = index+1;
-         $parent.append($('<img src="'+
-            imgArray[nextIndex].images.low_resolution.url+'"/>'));
+         imgurl = 'url(\''+imgArray[nextIndex].images.low_resolution.url+'\')';
+
+         $parent.append($('<div class="imgLastQuarter"></div>')
+         .css("backgroundImage", imgurl));
        }
 
        if (imgArray[index+2]) {
          nextIndex = index+2;
-         $parent.append($('<img src="'+
-         imgArray[nextIndex].images.low_resolution.url+'"/>'));
+
+         imgurl = 'url(\''+imgArray[nextIndex].images.low_resolution.url+'\')';
+         $parent.append($('<div class="imgLastQuarter"></div>')
+         .css("backgroundImage", imgurl));
        }
 
        return nextIndex+1;
     }
 
     function layout3($parent, index, imgArray) {
-       var nextIndex = index;
+       nextIndex = index;
+       var imgurl = 'url(\''+imgArray[nextIndex].images.standard_resolution.url+'\')';
 
-       $parent.append($('<img src="'+
-       imgArray[nextIndex].images.standard_resolution.url+'"/>').css("float", "right"));
+       $parent.append($('<div class="imgLastHalf"></div>')
+       .css("backgroundImage", imgurl));
 
        if (imgArray[index+1]) {
          nextIndex = index+1;
-         $parent.append($('<img src="'+
-            imgArray[nextIndex].images.low_resolution.url+'"/>'));
+         imgurl = 'url(\''+imgArray[nextIndex].images.low_resolution.url+'\')';
+
+         $parent.append($('<div class="imgFirstQuarter"></div>')
+         .css("backgroundImage", imgurl));
        }
 
        if (imgArray[index+2]) {
          nextIndex = index+2;
-         $parent.append($('<img src="'+
-         imgArray[nextIndex].images.low_resolution.url+'"/>'));
+
+         imgurl = 'url(\''+imgArray[nextIndex].images.low_resolution.url+'\')';
+         $parent.append($('<div class="imgFirstQuarter"></div>')
+         .css("backgroundImage", imgurl));
        }
 
        return nextIndex+1;
@@ -122,23 +224,9 @@
       var $page = $('<div class="imgFrame"></div>')
       .css("backgroundImage", imgurl);
 
-      $page.append($('<div>jQuery Flip Plugin Demo Using Instagram API</div>')
-      .css("font-size","40px")
-      .css("margin","20px 10px")
-      .css("padding", "10px")
-      .css("color", "white")
-      .css("background-color", "#555555")
-      );
+      $page.append($('<div id="demotitle">jQuery Flip Plugin Demo Using Instagram API</div>'));
 
-      $page.append($('<div>&lt; Flip</div>')
-      .css("float", "right")
-      .css("font-size","20px")
-      .css("margin","300px 0px")
-      .css("padding", "10px")
-      .css("color", "white")
-      .css("background-color", "#555555")
-      .css("text-align", "right")
-      );
+      $page.append($('<div id="flipmsg">&lt; Flip</div>'));
 
       $flipRoot.append($page);
       $page = $('<div></div>').css("backgroundColor", "white");
@@ -154,9 +242,18 @@
         $page = $('<div></div>').css("backgroundColor", "white");
       }
 
+
+      // controlling height (for iPhone)
+      var height = $(document).height();
+      if (height > 600) {
+        height = 600;
+      } else {
+        height -= 100;
+      }
+
       // init flip
       $flipRoot.flip({
-        height: '600px',
+        height: height+'px',
         showPager: true
       });
     }
