@@ -245,6 +245,7 @@
 
       // controlling height (for iPhone)
       var height = $(document).height();
+      var width = $(document).width();
       if (height > 600) {
         height = 600;
       } else {
@@ -252,10 +253,16 @@
       }
 
       // init flip
-      $flipRoot.flip({
+      var param = {
         height: height+'px',
         showPager: true
-      });
+      };
+
+      if (width < height) {
+        param.forwardDir = "btot";
+      }
+
+      $flipRoot.flip(param);
     }
 
     // append script element
