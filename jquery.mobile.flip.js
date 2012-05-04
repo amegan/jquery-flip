@@ -178,7 +178,7 @@
       .css('height', elemHeight / 2 + 'px');
 
       $firstHalf.children(':first')
-      .css('height', elemWidth + 'px')
+      .css('height', elemHeight + 'px')
       .css('display', 'block');
     } else {
       $firstHalf
