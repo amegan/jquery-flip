@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test page for Flip (internal) Class</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+
+    <!-- load qunit -->
+    <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.10.0.css" />
+    <script type="text/javascript" src="http://code.jquery.com/qunit/qunit-1.10.0.js"></script>
+
+    <!-- load flip lib -->
+    <link rel="stylesheet" href="../jquery.mobile.flip.css" />
+    <script type="text/javascript" src="../jquery.mobile.flip.js"></script>
+    <script type="text/javascript" src="flipTest.js"></script>
+
+<style>
+  .p {
+    font-size: 240px;
+    background: #F0F0F0;
+    background-image: -webkit-linear-gradient(#EEE,#DDD);
+  }
+</style>
+  </head>
+  <body>
+    <h1 id="qunit-header">jQuery Mobile Flip Test Suite</h1>
+    <h2 id="qunit-banner"></h2>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests">
+    </ol>
+    <div data-test-role="page">
+      <div data-test-role="flip"
+        data-test-height="424px"
+        data-test-show-pager="true"
+        data-test-loop="true">
+        <div class="p">Page 1</div>
+        <div class="p">Page 2</div>
+        <div class="p">Page 3</div>
+      </div>
+    </div>
+  </body>
+</html>
+
+

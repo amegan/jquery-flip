@@ -3,7 +3,7 @@
 jQuery/jQuery mobile plugin to give Flipboard app like effect. Flip effect uses css 3d transform. Flip effect currently works on WebKit browsers (e.g. Chrome, Safari, including iOS mobile safari) or Firefox 11. It still works with other browsers but the "slide" effect will be selected forecely.
 
 ## Compatibility
-Current version is compatible with jQuery 1.6.4, 1.7.0, 1.7.1 and jQuery Mobile 1.0 and 1.1.
+Current version is compatible with jQuery 1.6.4, 1.7.X, 1.8.X and jQuery Mobile 1.0, 1.1 and 1.2.
 
 ## Screenshots
 ![Flip right-to-left](http://amegan.github.com/jquery-flip/shot.png "Flip Right-to-Left")  ![Flip bottom-to-top](http://amegan.github.com/jquery-flip/shot2.png "Flip Bottom-to-Top")
@@ -28,7 +28,7 @@ After copying files to your web project, load js and css file into your html.
 ## Usage
 
 ### Prerequisite
-This plugin expects nested `<div>`, `<p>`, `<section>` or `<article>` elements structure. Root element will be used to initialize plugin.
+This plugin expects nested `<div>`, `<p>`, `<section>` or `<article>` elements structure. Parent element of them will be used to initialize plugin.
 
     <div id="flipRoot">
        <!-- div element -->
@@ -39,7 +39,7 @@ This plugin expects nested `<div>`, `<p>`, `<section>` or `<article>` elements s
        <p>
          Flip Content 2
        </p>
-       <!-- or p element -->
+       <!-- or article element -->
        <artcile>
          Flip Content 3
        </article>
@@ -101,12 +101,12 @@ Following option is supported.
 
  option name | description | jqm attribute | value
 -------------|-------------|---------------|------
-effect       |Transiton effect|data-flip-effect|'flip' or 'slide'
-forwardDir   |forward direction|data-flip-forward-dir|'rtol' or 'ltor' or 'ttob' or 'btot'
-height       |Content height|data-flip-height| height css
-keyboardNav  |enable keyboard navigation|data-flip-keyboard-nav|true or false
-showPager    |show pager|data-flip-show-pager|true or false
-loop         |loop contents|data-flip-loop|true or false
+effect |Transiton effect |data-flip-effect|'flip' or 'slide'
+forwardDir |forward direction|data-flip-forward-dir|'rtol' or 'ltor' or 'ttob' or 'btot'
+height |Content height   |data-flip-height| height css (e.g. 300px or 2in)
+keyboardNav |enable keyboard navigation|data-flip-keyboard-nav|true or false
+showPager |show pager |data-flip-show-pager|true or false
+loop |loop contents |data-flip-loop|true or false
 
 Sample:
 
