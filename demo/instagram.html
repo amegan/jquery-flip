@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <title>jquery-flip demo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.css" />
-   <link rel="stylesheet" href="../jquery.mobile.flip.min.css" />
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+  <link rel="stylesheet" href="../jquery.mobile.flip.min.css" />
 
    <style>
      #demotitle {
@@ -118,9 +118,9 @@
 
   </style>
 
-  <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-  <script src="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.js"></script>
-  <script type="text/javascript" src="../jquery.mobile.flip.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+  <script type="text/javascript" src="../jquery.mobile.flip.js"></script>
 
   <script>
     // load popular photos
@@ -246,16 +246,18 @@
       // controlling height (for iPhone)
       var height = $(document).height();
       var width = $(document).width();
+
       if (height > 600) {
         height = 600;
       } else {
-        height -= 100;
+        height = $(document.body).height()+60;
       }
 
       // init flip
       var param = {
         height: height+'px',
-        showPager: true
+        showPager: true,
+        loop: true
       };
 
       if (width < height) {
@@ -265,6 +267,28 @@
       }
 
       $flipRoot.flip(param);
+
+
+      // a kind of autostart
+      var timer = 10000;
+      var autostart = function() {
+        var $flipRoot = $("#flipRoot");
+        var pageCount = $flipRoot.children(".flipContent").length;
+        var flipObject = $.data($flipRoot[0], 'plugin_flip');
+        var pageIdx = 0;
+
+        return flip = function() {
+          flipObject.flipNext();
+          pageIdx++;
+          if (pageIdx == pageCount) {
+            pageIdx = 0;
+          }
+
+          setTimeout(flip, timer);
+        }
+      }
+
+      setTimeout(autostart(), timer);
     }
 
     // append script element
