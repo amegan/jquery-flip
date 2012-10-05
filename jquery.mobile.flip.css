@@ -32,7 +32,6 @@
 }
 
 .flipping {
-  z-index: 1;
   background-color: inherit;
   -webkit-backface-visibility: hidden;
   -webkit-transform-style: flat;
@@ -58,7 +57,7 @@
 }
 
 .backflipping {
-  z-index: 1;
+  display: none; /* hidden by default */
   background-color: inherit;
   -webkit-backface-visibility: hidden;
   -webkit-transform-style:flat;
