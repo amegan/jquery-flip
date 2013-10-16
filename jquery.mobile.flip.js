@@ -936,7 +936,7 @@
     // check element data- attribute for jqm initialization
     var $elem = $(this.element);
 
-    if ($.mobile.ns) {
+    if (typeof $.mobile !== 'undefined' && $.mobile.ns) {
       _NS = $.mobile.ns;
     }
 
