@@ -954,17 +954,53 @@
   }
 
   Plugin.prototype.isFlipSupported = function() {
-    var ua = $.browser;
-    if (ua.webkit) {
-      return true;
+    if (!window.getComputedStyle) {
+      return false;
     }
 
-    // Mozilla 11.0 or newer
-    if (ua.mozilla && parseInt(ua.version.slice(0, 2), 10) > 10) {
-      return true;
+    // detect 3d tranform support by checking its capability
+    var transforms = {
+      'webkitTransform': '-webkit-transform',
+      'MozTransform': '-moz-transform',
+      'msTransform': '-ms-transform',
+      'transform': 'transform'
+    };
+
+    var transformType = null;
+    var flipSupport = false;
+    var elem = document.body;
+    for (var transform in transforms) {
+      var originalValue = window.getComputedStyle(elem).getPropertyValue(transforms[transform]);
+      elem.style[transform] = "translate3d(1px,1px,1px)";
+      flipSupport = window.getComputedStyle(elem).getPropertyValue(transforms[transform]);
+      elem.style[transform] = originalValue;
+
+      if (flipSupport) {
+        transformType = transform;
+        break;
+      }
     }
 
-    return false;
+    if (!flipSupport) {
+      return false;
+    }
+
+    // set CSSPREFIX
+    switch (transformType) {
+      case 'webkitTransform':
+        CSSPREFIX = 'webkit';
+        break;
+
+      case 'MozTransform':
+        CSSPREFIX = 'Moz';
+        break;
+
+      case 'msTransform':
+        CSSPREFIX = 'ms';
+        break;
+    }
+
+    return flipSupport;
   }
 
   /**
@@ -1326,15 +1362,6 @@
   }
 
   Plugin.prototype.init = function() {
-    //
-    // detect browser to switch css prefix
-    var ua = $.browser;
-    if (ua.webkit) {
-      CSSPREFIX = 'webkit';
-    } else if (ua.mozilla && parseInt(ua.version.slice(0, 2), 10) > 10) {
-      CSSPREFIX = 'Moz';
-    }
-
     // --------------------------------------------------
     // setup objects
     var $elem = $(this.element);
