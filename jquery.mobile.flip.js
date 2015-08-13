@@ -181,14 +181,14 @@
     if (isVertical) {
       $firstHalf
       .css('width', elemWidth + 'px')
-      .css('height', Math.floor(elemHeight / 2) + 'px');
+      .css('height', Math.ceil(elemHeight / 2) + 'px');
 
       $firstHalf.children(':first')
       .css('height', elemHeight + 'px')
       .css('display', 'block');
     } else {
       $firstHalf
-      .css('width', Math.floor(elemWidth / 2) + 'px')
+      .css('width', Math.ceil(elemWidth / 2) + 'px')
       .css('height', elemHeight + 'px');
 
       $firstHalf.children(':first')
@@ -202,22 +202,22 @@
       $secondHalf
       .css('width', elemWidth + 'px')
       .css('height', Math.ceil(elemHeight / 2) + 'px')
-      .css('top', Math.floor(elemHeight / 2) + 'px');
+      .css('top', Math.ceil(elemHeight / 2) + 'px');
 
       $secondHalf.children(':first')
       .css('height', elemHeight + 'px')
       .css('display', 'block')
-      .css('top', -1 * Math.floor(elemHeight / 2) + 'px');
+      .css('top', -1 * Math.ceil(elemHeight / 2) + 'px');
     } else {
       $secondHalf
       .css('width', Math.ceil(elemWidth / 2) + 'px')
       .css('height', elemHeight + 'px')
-      .css('left', Math.floor(elemWidth / 2) + 'px');
+      .css('left', Math.ceil(elemWidth / 2) + 'px');
 
       $secondHalf.children(':first')
       .css('width', elemWidth + 'px')
       .css('display', 'block')
-      .css('left', -1 * Math.floor(elemWidth / 2) + 'px');
+      .css('left', -1 * Math.ceil(elemWidth / 2) + 'px');
     }
 
     if ($flipRoot.children(firstCustom).length === 0) {
@@ -936,7 +936,7 @@
     // check element data- attribute for jqm initialization
     var $elem = $(this.element);
 
-    if ($.mobile.ns) {
+    if (typeof $.mobile !== 'undefined' && $.mobile.ns) {
       _NS = $.mobile.ns;
     }
 
@@ -954,17 +954,53 @@
   }
 
   Plugin.prototype.isFlipSupported = function() {
-    var ua = $.browser;
-    if (ua.webkit) {
-      return true;
+    if (!window.getComputedStyle) {
+      return false;
     }
 
-    // Mozilla 11.0 or newer
-    if (ua.mozilla && parseInt(ua.version.slice(0, 2), 10) > 10) {
-      return true;
+    // detect 3d tranform support by checking its capability
+    var transforms = {
+      'webkitTransform': '-webkit-transform',
+      'MozTransform': '-moz-transform',
+      'msTransform': '-ms-transform',
+      'transform': 'transform'
+    };
+
+    var transformType = null;
+    var flipSupport = false;
+    var elem = document.body;
+    for (var transform in transforms) {
+      var originalValue = window.getComputedStyle(elem).getPropertyValue(transforms[transform]);
+      elem.style[transform] = "translate3d(1px,1px,1px)";
+      flipSupport = window.getComputedStyle(elem).getPropertyValue(transforms[transform]);
+      elem.style[transform] = originalValue;
+
+      if (flipSupport) {
+        transformType = transform;
+        break;
+      }
     }
 
-    return false;
+    if (!flipSupport) {
+      return false;
+    }
+
+    // set CSSPREFIX
+    switch (transformType) {
+      case 'webkitTransform':
+        CSSPREFIX = 'webkit';
+        break;
+
+      case 'MozTransform':
+        CSSPREFIX = 'Moz';
+        break;
+
+      case 'msTransform':
+        CSSPREFIX = 'ms';
+        break;
+    }
+
+    return flipSupport;
   }
 
   /**
@@ -1326,15 +1362,6 @@
   }
 
   Plugin.prototype.init = function() {
-    //
-    // detect browser to switch css prefix
-    var ua = $.browser;
-    if (ua.webkit) {
-      CSSPREFIX = 'webkit';
-    } else if (ua.mozilla && parseInt(ua.version.slice(0, 2), 10) > 10) {
-      CSSPREFIX = 'Moz';
-    }
-
     // --------------------------------------------------
     // setup objects
     var $elem = $(this.element);
