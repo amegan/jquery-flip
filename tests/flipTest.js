@@ -83,11 +83,11 @@ function test_SplitElem() {
   strictEqual($second.height(), height,
   'RTOL: full height');
   strictEqual($second.width(),
-  Math.ceil(width / 2),
-  'RTOL: second half width is ceiled');
+  Math.floor(width / 2),
+  'RTOL: second half width is floored');
   strictEqual($second.offset().left,
-  Math.ceil(width / 2),
-  'RTOL: second half left position is ceiled. It must be same as first half width.');
+  Math.floor(width / 2),
+  'RTOL: second half left position is floored. It must be same as first half width.');
 
   $('.firstHalf').replaceWith('');
   $('.secondHalf').replaceWith('');
@@ -127,11 +127,11 @@ function test_SplitElem() {
   height,
   'LTOR: full height');
   strictEqual($second.width(),
-  Math.ceil(width / 2),
-  'LTOR: second half width is ceiled');
+  Math.floor(width / 2),
+  'LTOR: second half width is floored');
   strictEqual($second.offset().left,
-  Math.ceil(width / 2),
-  'LTOR: second half left position is ceiled. It must be same as first half width.');
+  Math.floor(width / 2),
+  'LTOR: second half left position is floored. It must be same as first half width.');
 
   $('.firstHalf').replaceWith('');
   $('.secondHalf').replaceWith('');

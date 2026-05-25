@@ -201,23 +201,23 @@
     if (isVertical) {
       $secondHalf
       .css('width', elemWidth + 'px')
-      .css('height', Math.ceil(elemHeight / 2) + 'px')
-      .css('top', Math.ceil(elemHeight / 2) + 'px');
+      .css('height', Math.floor(elemHeight / 2) + 'px')
+      .css('top', Math.floor(elemHeight / 2) + 'px');
 
       $secondHalf.children(':first')
       .css('height', elemHeight + 'px')
       .css('display', 'block')
-      .css('top', -1 * Math.ceil(elemHeight / 2) + 'px');
+      .css('top', -1 * Math.floor(elemHeight / 2) + 'px');
     } else {
       $secondHalf
-      .css('width', Math.ceil(elemWidth / 2) + 'px')
+      .css('width', Math.floor(elemWidth / 2) + 'px')
       .css('height', elemHeight + 'px')
-      .css('left', Math.ceil(elemWidth / 2) + 'px');
+      .css('left', Math.floor(elemWidth / 2) + 'px');
 
       $secondHalf.children(':first')
       .css('width', elemWidth + 'px')
       .css('display', 'block')
-      .css('left', -1 * Math.ceil(elemWidth / 2) + 'px');
+      .css('left', -1 * Math.floor(elemWidth / 2) + 'px');
     }
 
     if ($flipRoot.children(firstCustom).length === 0) {

@@ -131,6 +131,28 @@ Sample:
     </div>
 
 
+## Development
+
+To set up the development environment, build the project, and run tests locally:
+
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+2. **Start the local development server (with auto-open tests)**:
+   ```bash
+   npm run dev
+   ```
+   This will host the files and automatically open the QUnit tests page in your browser (typically at `http://localhost:5173/tests/test_flip.html`).
+
+3. **Build minified files and source maps**:
+   ```bash
+   npm run build
+   ```
+   This compiles `jquery.mobile.flip.js` to `jquery.mobile.flip.min.js` and creates the source map `jquery.mobile.flip.min.js.map` in the root directory.
+
 ## License
 
 [The MIT License](http://www.opensource.org/licenses/mit-license.php "link to Open Source Initiative")
+

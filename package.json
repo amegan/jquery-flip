@@ -1,0 +1,13 @@
+{
+  "name": "jquery-flip",
+  "version": "1.0.1",
+  "description": "jQuery Mobile Flip Widget",
+  "main": "jquery.mobile.flip.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}
